@@ -1,0 +1,14 @@
+[package]
+name = "rtml-page-demo"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rtml = { git = "https://github.com/PrivateRookie/rtml" }
+wasm-bindgen = { version = "0.2" }
+
+[[bin]]
+name = "index"
+path = "index.rs"
