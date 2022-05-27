@@ -1,0 +1,10 @@
+{
+  "name": "rtml-page-demo",
+  "version": "0.1.0",
+  "files": [
+    "rtml_page_demo_bg.wasm",
+    "rtml_page_demo.js"
+  ],
+  "module": "rtml_page_demo.js",
+  "sideEffects": false
+}
