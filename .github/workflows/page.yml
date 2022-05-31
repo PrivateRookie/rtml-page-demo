@@ -12,14 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: install wasm-pack
-        run: cargo install wasm-pack
+      - name: install cli
+        run: cargo install -f wasm-bindgen-cli && cargo install -f --git https://github.com/PrivateRookie/rtml.git cargo-rtml
       - name: Build
-        run: wasm-pack build --target web --no-typescript && cargo run --bin index
-      - name: rm .gitignore
-        run: rm ./pkg/.gitignore
+        run: cargo-rtml build
       - uses: peaceiris/actions-gh-pages@v3.7.3
         name: deploy
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./pkg
+          publish_dir: ./target/dist
