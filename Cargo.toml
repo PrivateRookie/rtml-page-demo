@@ -9,9 +9,9 @@ edition = "2021"
 rtml = { git = "https://github.com/PrivateRookie/rtml" }
 wasm-bindgen = { version = "0.2" }
 
+[build-dependencies]
+rtml = { git = "https://github.com/PrivateRookie/rtml"}
+rtml-project = { git = "https://github.com/PrivateRookie/rtml" }
+
 [lib]
 crate-type = ["cdylib"]
-
-[[bin]]
-name = "index"
-path = "index.rs"
