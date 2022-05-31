@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: install wasm32 target
+        run: rustup target add wasm32-unknown-unknown
       - name: install cli
         run: cargo install -f wasm-bindgen-cli && cargo install -f --git https://github.com/PrivateRookie/rtml.git cargo-rtml
       - name: Build
