@@ -1,6 +1,6 @@
 use rtml::{
-    mount_body,
-    tags::{button, div, p},
+    mount_body, ref_subs, ref_update, t_attr,
+    tags::{a, button, div, hr, p, span, strong},
     EventKind::Click,
     IntoReactive,
 };
@@ -9,8 +9,9 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen(start)]
 pub fn start() {
     let count = 0usize.reactive();
-    let display = count.view(|data| {
-        let count = data.val();
+
+    let display = ref_subs!(count => {
+        let count = count.val();
         let content = if *count >= 1 {
             format!("count {count} times")
         } else {
@@ -19,23 +20,32 @@ pub fn start() {
         content
     });
 
-    let incr = count.change(|data| {
-        *data.val_mut() += 1;
+    let incr = ref_update!(count => |_| {
+        *count.val_mut() += 1;
         true
     });
 
-    let dec = count.change(|data| {
-        if *data.val() > 0 {
-            *data.val_mut() -= 1;
+    let dec = ref_update!(count => |_| {
+        if *count.val() > 0 {
+            *count.val_mut() -= 1;
             true
         } else {
             false
         }
     });
+
     let counter = div((
         p(display),
         button("+1").on(Click, incr),
         button("-1").on(Click, dec),
+        hr(()),
+        strong((
+            span("Written by "),
+            a((
+                t_attr! {href="https://github.com/PrivateRookie/rtml"},
+                "rtml",
+            )),
+        )),
     ));
 
     mount_body(counter).unwrap();

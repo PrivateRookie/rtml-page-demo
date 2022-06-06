@@ -8,6 +8,16 @@ edition = "2021"
 [dependencies]
 rtml = { git = "https://github.com/PrivateRookie/rtml" }
 wasm-bindgen = { version = "0.2" }
+web-sys = { version = "0.3", features = [
+    "Document",
+    "Element",
+    "HtmlElement",
+    "Node",
+    "Window",
+    'Storage',
+    "KeyboardEvent",
+    "HtmlInputElement"
+] }
 
 [build-dependencies]
 rtml = { git = "https://github.com/PrivateRookie/rtml"}
